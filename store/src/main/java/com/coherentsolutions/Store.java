@@ -1,6 +1,7 @@
 package com.coherentsolutions;
 
 import com.coherentsolutions.domain.Category;
+import com.coherentsolutions.domain.CategoryNames;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +13,13 @@ public class Store {
         categoryItems.add(category);
     }
 
- //   public void printCategoryList (Category category){
- //       System.out.println("Category:" + category);
- //       System.out.println("**********");
- //       for (Category category: categoryItems){System.out.println(category);} }
+    public void printStore () {
 
+        System.out.println("AT Store");
+        System.out.println("--------------");
+
+        for (Category category : categoryItems) {
+            System.out.println(category);
+        }
+    }
 }
