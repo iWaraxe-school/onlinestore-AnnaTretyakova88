@@ -15,4 +15,8 @@ public class Product {
     public Integer getPrice() {return price;}
     public Double getRate() {return rate;}
 
+    @Override
+    public String toString() {
+        return String.format("Name: %s , Price: %s , Rate: %s", name, price, rate);
+    }
 }
