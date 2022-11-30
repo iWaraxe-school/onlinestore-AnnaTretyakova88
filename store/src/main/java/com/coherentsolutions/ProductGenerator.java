@@ -8,27 +8,24 @@ import com.github.javafaker.Faker;
 
     Faker faker = new Faker();
 
-    private String toysProduct (CategoryNames TOYS){
-        return faker.chuckNorris().fact();
+    private String productName (CategoryNames categoryName){
+        if (categoryName == CategoryNames.TOYS)
+            return faker.chuckNorris().fact();
+        else if (categoryName == CategoryNames.ELECTRONICS)
+            return faker.rickAndMorty().character();
+        else if (categoryName == CategoryNames.CLOTHES) {
+            return faker.commerce().material();}
+        else return null;
     }
-    private String electronicsProduct (CategoryNames ELECTRONICS){
-        return faker.rickAndMorty().character();
-    }
-    private String clothesProduct (CategoryNames CLOTHES){
-        return faker.commerce().material();
-    }
-    private int productPrice(){
-        return faker.number().numberBetween(1, 200);
-    }
-    private double productRate(){
-        return faker.number().randomDouble(2,0, 10);
-    }
-      //      DRAFT
-      //  public Product generateProduct(){
-     //   Product toys = new Product(toysProduct(CategoryNames.TOYS),productPrice(), productRate());
-     //   Product electronics = new Product(toysProduct(CategoryNames.ELECTRONICS),productPrice(), productRate());
-     //   Product clothes = new Product(toysProduct(CategoryNames.CLOTHES),productPrice(), productRate());
-     // return toys;
-     // }
+    private int productPrice(){return faker.number().numberBetween(1, 200);}
+    private double productRate(){return faker.number().randomDouble(2,0, 10);}
+
+       public Product generateProduct(CategoryNames categoryName){
+        return new Product(
+                productName(categoryName),
+                productPrice(),
+                productRate());
+       }
+
     }
 
