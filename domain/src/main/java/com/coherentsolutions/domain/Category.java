@@ -4,18 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
  public abstract class Category {
-     private final String name;
+     private final CategoryNames name;
      private List<Product> products;
 
-     public Category(String name) {
+     public Category(CategoryNames name) {
          this.name = name;
          this.products = new ArrayList<Product>();
      }
 
-     public String getName() {return name;}
+     public CategoryNames getName() {return name;}
      public void addProductToCategory(Product product) {
          products.add(product);
      }
+
+    @Override
+    public String toString(){
+       StringBuilder categoryString = new StringBuilder();
+       categoryString.append("***********");
+       categoryString.append("Category"+ name + "\n");
+       categoryString.append("***********");
+
+        for (Product product: products){
+           categoryString.append("\t" + product + "\n");}
+        return categoryString.toString();
+        }
 
      public void printCategoryProducts(){
          System.out.println("*********");
