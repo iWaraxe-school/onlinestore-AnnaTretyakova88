@@ -9,20 +9,20 @@ import java.util.List;
 
      public Category(CategoryNames name) {
          this.name = name;
-         this.products = new ArrayList<Product>();
+         this.products = new ArrayList<>();
      }
 
      public CategoryNames getName() {return name;}
      public void addProductToCategory(Product product) {
-         products.add(product);
+         this.products.add(product);
      }
 
     @Override
     public String toString(){
        StringBuilder categoryString = new StringBuilder();
-       categoryString.append("***********");
+       categoryString.append("***********\n");
        categoryString.append("Category"+ name + "\n");
-       categoryString.append("***********");
+       categoryString.append("***********\n");
 
         for (Product product: products){
            categoryString.append("\t" + product + "\n");}

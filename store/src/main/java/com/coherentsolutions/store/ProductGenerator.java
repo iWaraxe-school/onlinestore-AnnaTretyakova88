@@ -1,4 +1,4 @@
-package com.coherentsolutions;
+package com.coherentsolutions.store;
 
 import com.coherentsolutions.domain.CategoryNames;
 import com.coherentsolutions.domain.Product;
@@ -8,9 +8,9 @@ import com.github.javafaker.Faker;
 
     Faker faker = new Faker();
 
-    private String productName (CategoryNames categoryName){
+    private String productName(CategoryNames categoryName){
         if (categoryName == CategoryNames.TOYS)
-            return faker.chuckNorris().fact();
+            return faker.gameOfThrones().character();
         else if (categoryName == CategoryNames.ELECTRONICS)
             return faker.rickAndMorty().character();
         else if (categoryName == CategoryNames.CLOTHES) {
