@@ -1,4 +1,4 @@
-package com.coherentsolutions;
+package com.coherentsolutions.store;
 
 import com.coherentsolutions.domain.Category;
 import com.coherentsolutions.domain.CategoryNames;
@@ -10,7 +10,7 @@ public class Store {
     private List<Category> categoryItems = new ArrayList<Category>();
 
     public void addCategoryToStore(Category category){
-        categoryItems.add(category);
+        this.categoryItems.add(category);
     }
 
     public void printStore () {
