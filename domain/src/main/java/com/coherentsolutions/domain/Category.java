@@ -30,9 +30,9 @@ import java.util.List;
         }
 
      public void printCategoryProducts(){
-         System.out.println("*********");
+         System.out.println("*************");
          System.out.println("Category:" + name );
-         System.out.println("*********");
+         System.out.println("*************");
 
          for(Product product:products){
              System.out.println(product);
