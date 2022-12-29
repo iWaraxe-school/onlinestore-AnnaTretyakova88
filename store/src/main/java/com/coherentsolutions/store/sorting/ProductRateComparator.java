@@ -9,6 +9,6 @@ public class ProductRateComparator implements Comparator<Product> {
 
     @Override
     public int compare(Product prod1, Product prod2) {
-        return prod1.getRate().compareTo(prod2.getRate());
+        return prod2.getRate().compareTo(prod1.getRate());
     }
 }
