@@ -10,7 +10,7 @@ import com.github.javafaker.Faker;
 
     private String productName(CategoryNames categoryName){
         if (categoryName == CategoryNames.TOYS)
-            return faker.gameOfThrones().character();
+            return faker.animal().name();
         else if (categoryName == CategoryNames.ELECTRONICS)
             return faker.rickAndMorty().character();
         else if (categoryName == CategoryNames.CLOTHES) {
