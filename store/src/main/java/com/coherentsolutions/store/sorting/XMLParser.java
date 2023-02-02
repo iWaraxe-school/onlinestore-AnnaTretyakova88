@@ -36,7 +36,7 @@ public class XMLParser {
             //define tag name as key for map
             String key = tagElement.getTagName();
             //define tag text as value for map
-            SortingOptions value = SortingOptions.valueOf(tagElement.getTextContent());
+            SortingOptions value = SortingOptions.valueOf(tagElement.getTextContent().toUpperCase());
             // put obtained key and values into map
             sortingMap.put(key, value);
          }
