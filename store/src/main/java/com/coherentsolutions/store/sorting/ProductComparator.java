@@ -5,11 +5,12 @@ import java.util.Comparator;
 import java.util.Map;
 
 public class ProductComparator {
-    Comparator<Product> productComparator ;
-    Comparator<Product> generalComparator ;
-    int i = 1;
 
-    public Comparator<Product> buildComparator(Map<String, SortingOptions> sortingMap) {
+
+    public static Comparator<Product> buildComparator(Map<String, SortingOptions> sortingMap) {
+        Comparator<Product> productComparator = Comparator.comparing(Product::getName, String::compareToIgnoreCase);
+        Comparator<Product> generalComparator = productComparator;
+        int i = 1;
 
         for (Map.Entry<String, SortingOptions> entry : sortingMap.entrySet()) {
             String sortParam = entry.getKey();
@@ -28,15 +29,15 @@ public class ProductComparator {
             if (order.equals(SortingOptions.DESC)) {
                 productComparator = productComparator.reversed();
             }
-            return productComparator;
+            if (i == 1) {
+                generalComparator = productComparator;
+            }
+            else {
+                generalComparator = generalComparator.thenComparing(productComparator);
+            }
+            i++;
         }
-        if (i == 1) {
-            generalComparator = productComparator;
-        }
-        else {
-            generalComparator = generalComparator.thenComparing(productComparator);
-        }
-        i++;
+
         return generalComparator;
     }
 }

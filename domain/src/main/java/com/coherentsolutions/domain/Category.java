@@ -7,6 +7,10 @@ import java.util.List;
      private final CategoryNames name;
      private List<Product> products;
 
+     public List<Product> getProducts() {
+         return products;
+     }
+
      public Category(CategoryNames name) {
          this.name = name;
          this.products = new ArrayList<>();

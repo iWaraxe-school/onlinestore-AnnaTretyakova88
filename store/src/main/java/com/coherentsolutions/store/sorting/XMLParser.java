@@ -17,13 +17,24 @@ import java.util.Map;
 
 public class XMLParser {
 
-   public static Map<String, SortingOptions> readAndParseXML() throws ParserConfigurationException, IOException, SAXException {
+   public static Map<String, SortingOptions> readAndParseXML() {
 
       final Map<String, SortingOptions> sortingMap = new LinkedHashMap<>();
 
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-      DocumentBuilder db = dbf.newDocumentBuilder();
-      Document configDoc = db.parse(new File("config.xml"));
+      DocumentBuilder db = null;
+      Document configDoc = null;
+      try {
+         db = dbf.newDocumentBuilder();
+         configDoc = db.parse(new File("C:\\Users\\AnnaTretyakova\\IdeaProjects\\onlinestore-AnnaTretyakova88\\store\\src\\main\\resources\\config.xml"));
+      } catch (ParserConfigurationException e) {
+         throw new RuntimeException(e);
+      } catch (IOException e) {
+         throw new RuntimeException(e);
+      } catch (SAXException e) {
+         throw new RuntimeException(e);
+      }
+
 
       Node mainTag = configDoc.getElementsByTagName("sort").item(0);
       NodeList sortMethods = mainTag.getChildNodes();
