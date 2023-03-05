@@ -10,6 +10,18 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Store {
+    private static Store singleStore;
+    private Store (){};
+
+    public static Store getInstance(){
+        if (singleStore == null) {
+            Store singleStore = new Store();
+            RandomStorePopulator populator = new RandomStorePopulator(singleStore);
+            populator.fillByProducts();
+            return singleStore;
+        }
+        return singleStore;
+    };
     private List<Category> categoryItems = new ArrayList<Category>();
 
     public void addCategoryToStore(Category category){
