@@ -10,7 +10,7 @@ import com.github.javafaker.Faker;
 
     private String productName(CategoryNames categoryName){
         if (categoryName == CategoryNames.TOYS)
-            return faker.gameOfThrones().character();
+            return faker.animal().name();
         else if (categoryName == CategoryNames.ELECTRONICS)
             return faker.rickAndMorty().character();
         else if (categoryName == CategoryNames.CLOTHES) {
@@ -21,10 +21,16 @@ import com.github.javafaker.Faker;
     private double productRate(){return faker.number().randomDouble(2,0, 10);}
 
        public Product generateProduct(CategoryNames categoryName){
-        return new Product(
-                productName(categoryName),
-                productPrice(),
-                productRate());
+           return Product.builder()
+                .setName(productName(categoryName))
+                .setPrice(productPrice())
+                .setRate(productRate())
+                .build();
+
+//                new Product(
+//                productName(categoryName),
+//                productPrice(),
+//                productRate());
        }
 
     }

@@ -1,14 +1,39 @@
 package com.coherentsolutions.domain;
 
 public class Product {
-    private final String name;
-    private final Integer price;
-    private final Double rate;
+    private String name;
+    private Integer price;
+    private Double rate;
 
-    public Product (String name, Integer price, Double rate ) {
-        this.name=name;
-        this.price=price;
-        this.rate=rate;
+    private Product () {
+    }
+    public static ProductBuilder builder(){
+        return new Product().new ProductBuilder();
+    }
+    public class ProductBuilder {
+        private String name;
+        private Integer price;
+        private Double rate;
+
+        public ProductBuilder setName(final String name){
+            this.name = name;
+            return this;
+        }
+        public ProductBuilder setPrice(final Integer price){
+            this.price = price;
+            return this;
+        }
+        public ProductBuilder setRate(final Double rate){
+            this.rate = rate;
+            return this;
+        }
+        public Product build (){
+            Product.this.name = this.name;
+            Product.this.price = this.price;
+            Product.this.rate = this.rate;
+            return Product.this;
+
+        }
     }
 
     public String getName() {return name;}

@@ -7,6 +7,10 @@ import java.util.List;
      private final CategoryNames name;
      private List<Product> products;
 
+     public List<Product> getProducts() {
+         return products;
+     }
+
      public Category(CategoryNames name) {
          this.name = name;
          this.products = new ArrayList<>();
@@ -30,9 +34,9 @@ import java.util.List;
         }
 
      public void printCategoryProducts(){
-         System.out.println("*********");
+         System.out.println("*************");
          System.out.println("Category:" + name );
-         System.out.println("*********");
+         System.out.println("*************");
 
          for(Product product:products){
              System.out.println(product);
