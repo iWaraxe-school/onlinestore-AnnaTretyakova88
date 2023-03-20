@@ -5,9 +5,11 @@ import com.coherentsolutions.store.Store;
 import java.io.Console;
 import java.util.Scanner;
 
+import static com.coherentsolutions.store.Store.getInstance;
+
 public class StoreApp {
     public static void main(String[] args) {
-        Store store = Store.getInstance();
+        Store store = getInstance();
 
         Scanner scan = new Scanner(System.in);
 

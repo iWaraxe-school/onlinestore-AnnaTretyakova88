@@ -1,6 +1,7 @@
 package com.coherentsolutions.store;
 
 import com.coherentsolutions.domain.Category;
+import com.coherentsolutions.domain.CategoryFactory;
 import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
@@ -21,23 +22,10 @@ public class RandomStorePopulator {
         Set<Class<? extends Category>> subTypes =
                 reflections.getSubTypesOf(Category.class);
         for (Class<? extends Category> subType : subTypes) {
-            Category category = null;
-            try {
-                category = subType.getConstructor().newInstance();
-                categorySet.add(category);
-            } catch (InstantiationException e) {
-                throw new RuntimeException(e);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            } catch (InvocationTargetException e) {
-                throw new RuntimeException(e);
-            } catch (NoSuchMethodException e) {
-                throw new RuntimeException(e);
-            }
-
+            CategoryFactory categoryFactory = new CategoryFactory();
+            String simpleCategoryName = subType.getSimpleName();
+            Category category = categoryFactory.createCategory(simpleCategoryName);
             categorySet.add(category);
-
-
         }
         return categorySet;
     }

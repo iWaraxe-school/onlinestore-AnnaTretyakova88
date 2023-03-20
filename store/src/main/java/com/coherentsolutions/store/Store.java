@@ -15,13 +15,14 @@ public class Store {
 
     public static Store getInstance(){
         if (singleStore == null) {
-            Store singleStore = new Store();
+            singleStore = new Store();
             RandomStorePopulator populator = new RandomStorePopulator(singleStore);
             populator.fillByProducts();
             return singleStore;
         }
         return singleStore;
     };
+
     private List<Category> categoryItems = new ArrayList<Category>();
 
     public void addCategoryToStore(Category category){
