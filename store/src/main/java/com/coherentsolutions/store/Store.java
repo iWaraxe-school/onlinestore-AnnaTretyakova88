@@ -58,5 +58,12 @@ public class Store {
         allProducts.stream()
                 .limit(5)
                 .forEach(System.out::println);
+    };
+
+    public Product selectItemFromStore(){
+        int i = (int) (1 + Math.random()*14);
+        List<Product> allProducts = getAllProducts();
+                return allProducts.get(i);
     }
+
 }
