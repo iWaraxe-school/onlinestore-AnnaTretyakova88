@@ -9,11 +9,15 @@ public class ClearingThread implements Runnable {
     private Order order;
     public boolean needRun = true;
 
-    @SneakyThrows
+
     @Override
     public void run() {
         while (needRun) {
-            TimeUnit.MINUTES.sleep(2);
+            try {
+                TimeUnit.MINUTES.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             order.clearCart();
             System.out.println("Cart is empty");
         }
@@ -22,5 +26,6 @@ public class ClearingThread implements Runnable {
     public void finishRunning(){
         needRun = false;
         }
-
 }
+
+

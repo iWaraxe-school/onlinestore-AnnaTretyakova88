@@ -6,16 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    public List<Product> cartSet = new ArrayList<>();
+    public List<Product> cartList = new ArrayList<>();
 
-    public Product addItemToCart(){
+    public synchronized Product addItemToCart(){
         Product item = Store.getInstance().selectItemFromStore();
-        this.cartSet.add(item);
+        this.cartList.add(item);
         return item;
     };
 
-    public void clearCart(){
-        this.cartSet.clear();
+    public synchronized void clearCart(){
+        this.cartList.clear();
     }
+
 
 }

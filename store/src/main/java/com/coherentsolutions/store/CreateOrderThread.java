@@ -11,8 +11,13 @@ public class CreateOrderThread implements Runnable {
     @Override
     public void run() {
         int i = (int) (1 + Math.random()*29);
+        long startTime = System.nanoTime();
         TimeUnit.SECONDS.sleep(i);
+        long endTime = System.nanoTime();
+        long elapsedTime = endTime - startTime;
         this.order.addItemToCart();
-        System.out.println("Item" + this.order.addItemToCart().getName() + "added to cart");
+        System.out.println("Item\t" + this.order.addItemToCart().getName() +"\t"+ "added to cart in " + elapsedTime + " nanoseconds.");
+
+
     }
 }

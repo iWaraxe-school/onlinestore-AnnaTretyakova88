@@ -1,5 +1,7 @@
 package com.coherentsolutions;
 
+import com.coherentsolutions.store.ClearingThread;
+import com.coherentsolutions.store.CreateOrderThread;
 import com.coherentsolutions.store.RandomStorePopulator;
 import com.coherentsolutions.store.Store;
 import java.io.Console;
@@ -15,6 +17,9 @@ public class StoreApp {
 
         System.out.println("Welcome in Anna Shop! \n");
 
+        ClearingThread clearingThread = new ClearingThread();
+        new Thread(clearingThread).start();
+        clearingThread.finishRunning();
 
 
         boolean stop = false;
@@ -33,6 +38,10 @@ public class StoreApp {
                     break;
                 case "Quit":
                     stop = true;
+                    break;
+                case "Order":
+                    Runnable createOrder = new CreateOrderThread();
+                    new Thread(createOrder).start();
                     break;
                 default:
                     System.out.println("Invalid option");
