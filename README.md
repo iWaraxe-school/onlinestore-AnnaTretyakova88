@@ -1,20 +1,31 @@
-## 6. Multithreading
+# 7. DB
+
 ----
-### Materials
+## Materials
 
-[Concurrency](https://docs.oracle.com/javase/tutorial/essential/concurrency/)
-[L10 from slide 24](https://drive.google.com/file/d/1lQorg4OeGddgLf54a3NaSKCe3NbPKWXN/view?usp=sharing) 
-[L11 from](https://drive.google.com/file/d/1hK3FwY2zJG0ChY3phqA2UlqJW15lZf\_O/view?usp=sharing) 
+[H2 Database](https://www.h2database.com/html/main.html)
 
-### VideoLectures
-- [Multithreading, part 1](https://youtu.be/fH7Yb9HnK3Q)
-- [ Multithreading, part 2](https://youtu.be/RxrtmHPnOo0)
+[Very brief description](https://www.javatpoint.com/steps-to-connect-to-the-database-in-java)
 
-### Task #6
+[One more](https://www.baeldung.com/java-jdbc)
 
-Please implement `create order` functionality. Each order should be processed in separate thread. Whe user select product
-, generate the random int from 1 to 30, and create thread that will process selected order for selected time, and after it
-place the product in another collection (for example, purchased goods).
-And create one more thread, that will be executed periodically, e.g. ones in 2 mins, that will clean up purchased collection.
+## Task
+In this task, you will replace the current `Reflection` and in-memory products storage with a database for storing categories and products. We will be using `JDBC` for database connectivity, and you'd better use the MySQL database. But if you have any experience with other databases feel free to choose those that you're familiar with.
 
-You can implement this in "native" java methods but better and simplier to use java.util.concurrent package.  
+### Objective
+
+1. Store categories and products for each category in MySQL database tables using `JDBC`.
+2. Implement different levels of difficulty for this task (simple, medium, and advanced).
+
+### Levels of Difficulty
+
+1. **Simple**: Implement basic functionality to store categories and products in the `CATEGORIES` and `PRODUCTS` tables, respectively, and print the store data to the console using a direct JDBC connection.
+2. **Medium**: Implement all methods for sorting stores, ordering products, and clearing purchased product storage. Create an additional `ORDERS` table in the database to store order information.
+3. **Advanced**: Implement the DAO pattern to provide a clean and modular solution for data access. Implement the `CategoryDao`, `ProductDao`, and `OrderDao` interfaces and their corresponding concrete classes.
+
+Choose the level of difficulty based on your current knowledge and skills.
+
+### DAO Design Pattern
+The Data Access Object (DAO) pattern is a structural pattern that allows us to isolate the application's business logic from the underlying data storage. It provides an interface to perform CRUD operations on the data storage, which can be a database, a file system, or any other storage mechanism.
+
+In this task, you'll implement the DAO pattern to create a flexible and maintainable solution for accessing the MySQL database.
