@@ -17,7 +17,7 @@ public class Store {
         if (singleStore == null) {
             singleStore = new Store();
             RandomStorePopulator populator = new RandomStorePopulator(singleStore);
-            populator.fillByProducts();
+   //          populator.fillByProducts();
             return singleStore;
         }
         return singleStore;
@@ -25,9 +25,9 @@ public class Store {
 
     private List<Category> categoryItems = new ArrayList<Category>();
 
-    public void addCategoryToStore(Category category){
-        this.categoryItems.add(category);
-    }
+//    public void addCategoryToStore(Category category){
+//        this.categoryItems.add(category);
+//    }
 
     public void printStore () {
 

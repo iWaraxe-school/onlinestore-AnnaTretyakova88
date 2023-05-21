@@ -7,25 +7,46 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Database {
+
     public Connection dbConnection;
 
     public Database() throws ClassNotFoundException, SQLException {
         Class.forName("org.h2.Driver");
         dbConnection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "");
     }
-    @SneakyThrows
-    public void createCategoryTbl(){
-        try (Statement stmt =dbConnection.createStatement()) {
-            stmt.execute("CREATE TABLE IF NOT EXISTS CATEGORY(NAME VARCHAR(255));");
+
+    private static class SingleDB{
+        private static final Database dataBaseInstance = new Database();
+    }
+
+    public void createCategoryTbl(Statement stmt){
+        String creatingQuery = "CREATE TABLE IF NOT EXISTS CATEGORIES(" +
+                "ID INT PRIMARY KEY AUTO_INCREMENT NOT NULL," +
+                "NAME VARCHAR(255) NOT NULL);";
+        try {
+            stmt.execute(creatingQuery);
+        } catch (SQLException error) {
+            System.err.println("Creating Categories table failed" + error.getMessage());
         }
     }
 
-    @SneakyThrows
-    public void createProductTbl(){
-        try (Statement stmt =dbConnection.createStatement()) {
-            stmt.execute("CREATE TABLE IF NOT EXISTS PRODUCT(NAME VARCHAR(255));");
+    public void createProductTbl(Statement stmt){
+        String creatingQuery = "CREATE TABLE IF NOT EXISTS PRODUCTS(" +
+                "ID INT PRIMARY KEY AUTO_INCREMENT NOT NULL," +
+                "NAME VARCHAR(255) NOT NULL," +
+                "PRICE INTEGER NOT NULL" +
+                "RATE DOUBLE NOT NULL" +
+                "CATEGORY_ID INT NOT NULL FOREIGN KEY REFERENCE (CATEGORIES(ID))";
+        try {
+            stmt.execute(creatingQuery);
+        } catch (SQLException error) {
+            System.err.println("Creating Products table failed" + error.getMessage());
         }
     }
+    public static Database getInstance(){
+        return SingleDB.dataBaseInstance;
+    }
+
 }
 
 
