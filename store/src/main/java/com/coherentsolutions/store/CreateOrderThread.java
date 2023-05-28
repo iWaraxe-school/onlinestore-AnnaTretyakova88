@@ -1,5 +1,6 @@
 package com.coherentsolutions.store;
 
+import com.coherentsolutions.store.DB.Order;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.TimeUnit;

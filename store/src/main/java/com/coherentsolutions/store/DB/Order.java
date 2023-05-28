@@ -1,7 +1,7 @@
-package com.coherentsolutions.store;
+package com.coherentsolutions.store.DB;
 
 import com.coherentsolutions.domain.Product;
-
+import com.coherentsolutions.store.Store;
 import java.util.ArrayList;
 import java.util.List;
 
