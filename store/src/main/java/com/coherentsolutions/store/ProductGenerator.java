@@ -27,10 +27,6 @@ import com.github.javafaker.Faker;
                 .setRate(productRate())
                 .build();
 
-//                new Product(
-//                productName(categoryName),
-//                productPrice(),
-//                productRate());
        }
 
     }
