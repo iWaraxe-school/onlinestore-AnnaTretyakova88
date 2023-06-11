@@ -6,11 +6,13 @@ import java.util.function.Supplier;
 
 public class CategoryFactory {
     private static final Map<String, Supplier<Category>> Categories_Map = new HashMap<String, Supplier<Category>>() {{
-        put("Clothes", Clothes::new);
+        put("Clothes", () -> {
+            return new Clothes();
+        });
         put("Electronics", Electronics::new);
         put("Toys", Toys::new);
      }};
- public Category createCategory (String name) {
+ public static Category createCategory (String name) {
      return Categories_Map.getOrDefault(name, null).get();
  }
 }
