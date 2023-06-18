@@ -8,10 +8,7 @@ import java.io.IOException;
 
 public class Client {
     static Store store;
-    public Client (Store store){
-        this.store = store;
-    }
-    public static void clientBuysCheapestItem () throws IOException{
+    public static void clientBuysItem () throws IOException{
         Product orderedProduct = store.selectItemFromStore();
         Gson g = new Gson();
         String jProduct = g.toJson(orderedProduct);

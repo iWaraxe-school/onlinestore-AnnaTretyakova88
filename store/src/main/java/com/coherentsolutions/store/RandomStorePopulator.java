@@ -1,6 +1,5 @@
 package com.coherentsolutions.store;
 import com.coherentsolutions.domain.Category;
-import com.coherentsolutions.domain.CategoryFactory;
 import com.coherentsolutions.domain.Product;
 import com.coherentsolutions.store.DB.DatabaseConnection;
 
@@ -29,7 +28,7 @@ public class RandomStorePopulator {
             // add category
             int j = 1;
             for (Category category : categorySet) {
-                insertCategory.setString(1, CategoryFactory.createCategory(categoryName).getName().toString());
+                insertCategory.setString(1, categoryName);
                 insertCategory.executeUpdate();
                 //add products
                 for (int i = 0; i < 10; i++) {
@@ -54,29 +53,3 @@ public class RandomStorePopulator {
     }
 
 }
-//     private Set<Category> createCategorySet() {
-//     Set<Category> categorySet = new HashSet<>();
-//     categorySet.add(CategoryFactory.createCategory(name));
-//
-
-//        Reflections reflections = new Reflections("com.coherentsolutions.domain");
-//        Set<Class<? extends Category>> subTypes =
-//                reflections.getSubTypesOf(Category.class);
-//        for (Class<? extends Category> subType : subTypes) {
-//            CategoryFactory categoryFactory = new CategoryFactory();
-//            String simpleCategoryName = subType.getSimpleName();
-//            Category category = categoryFactory.createCategory(simpleCategoryName);
-//            categorySet.add(category);
-//        }
-//        return categorySet;
-
-//    public void fillByProducts() {
-//        Set<Category> categorySet = createCategorySet();
-//        ProductGenerator pg = new ProductGenerator();
-//        for (Category category : categorySet) {
-//            for (int i = 0; i < 7; i++) {
-//                category.addProductToCategory(pg.generateProduct(category.getName()));
-//            }
-//            store.addCategoryToStore(category);
-//        }
-//    }
