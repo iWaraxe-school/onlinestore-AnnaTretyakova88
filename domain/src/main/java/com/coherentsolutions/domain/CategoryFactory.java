@@ -10,7 +10,7 @@ public class CategoryFactory {
         put("Electronics", Electronics::new);
         put("Toys", Toys::new);
      }};
- public Category createCategory (String name) {
+ public static Category createCategory (String name) {
      return Categories_Map.getOrDefault(name, null).get();
  }
 }

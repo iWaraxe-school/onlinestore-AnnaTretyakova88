@@ -1,9 +1,6 @@
 package com.coherentsolutions.store;
-
 import com.coherentsolutions.domain.Category;
-import com.coherentsolutions.domain.CategoryNames;
 import com.coherentsolutions.domain.Product;
-import com.coherentsolutions.store.DB.Database;
 import com.coherentsolutions.store.DB.DatabaseConnection;
 
 import java.sql.Connection;
@@ -21,7 +18,7 @@ public class RandomStorePopulator {
         this.store = store;
     }
 
-    public void fillOutStore(CategoryNames categoryName) throws SQLException {
+    public void fillOutStore(String categoryName) throws SQLException {
 
         String insertCategoryQuery = "INSERT INTO CATEGORIES(NAME) VALUES (?)";
         String insertProductQuery = "INSERT INTO PRODUCTS(NAME, PRICE, RATE, CATEGORY_ID) VALUES (?,?,?,?)";
@@ -31,7 +28,7 @@ public class RandomStorePopulator {
             // add category
             int j = 1;
             for (Category category : categorySet) {
-                insertCategory.setString(1, categoryName.name());
+                insertCategory.setString(1, categoryName);
                 insertCategory.executeUpdate();
                 //add products
                 for (int i = 0; i < 10; i++) {
@@ -44,6 +41,7 @@ public class RandomStorePopulator {
                     insertProduct.executeUpdate();
                     category.addProductToCategory(randomProduct);
                 }
+                categorySet.add(category);
                 System.out.println("Category" + category.getName() + "with products successfully added.");
                 j++;
             }
@@ -54,30 +52,4 @@ public class RandomStorePopulator {
         }
     }
 
-
-    // private Set<Category> createCategorySet() {
-    //Set<Category> categorySet = new HashSet<>();
-
-
-//        Reflections reflections = new Reflections("com.coherentsolutions.domain");
-//        Set<Class<? extends Category>> subTypes =
-//                reflections.getSubTypesOf(Category.class);
-//        for (Class<? extends Category> subType : subTypes) {
-//            CategoryFactory categoryFactory = new CategoryFactory();
-//            String simpleCategoryName = subType.getSimpleName();
-//            Category category = categoryFactory.createCategory(simpleCategoryName);
-//            categorySet.add(category);
-//        }
-//        return categorySet;
-
-//    public void fillByProducts() {
-//        Set<Category> categorySet = createCategorySet();
-//        ProductGenerator pg = new ProductGenerator();
-//        for (Category category : categorySet) {
-//            for (int i = 0; i < 7; i++) {
-//                category.addProductToCategory(pg.generateProduct(category.getName()));
-//            }
-//            store.addCategoryToStore(category);
-//        }
-//    }
 }
